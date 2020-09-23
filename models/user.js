@@ -12,6 +12,13 @@ const userSchema = Schema(
     emailVerificationCode: { type: String, select: false },
     emailVerified: { type: Boolean, require: true, default: false },
     isDeleted: { type: Boolean, default: false, select: false },
+    cart: [
+      Schema({
+        quantity: { type: Number, default: 1 },
+        item: { type: Schema.Types.ObjectId, ref: "Item" },
+      }),
+    ],
+    role: { type: String, enum: ["admin", "customer"], default: "customer" },
   },
   { timestamps: true }
 );

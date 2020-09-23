@@ -10,17 +10,21 @@ const authController = {};
 authController.loginWithEmail = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email }, "+password");
+
   if (!user)
     return next(new AppError(400, "Invalid credentials", "Login Error"));
 
-  if (!user.emailVerified) {
-    return next(new AppError(406, "Please verify your email", "Login Error"));
-  }
+  // if (!user.emailVerified) {
+  //   return next(new AppError(406, "Please verify your email", "Login Error"));
+  // }
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return next(new AppError(400, "Wrong password", "Login Error"));
 
   accessToken = await user.generateToken();
+  if (user.cart && user.cart.length > 0) {
+    User.populate(user, { path: "cart.item" });
+  }
   return sendResponse(
     res,
     200,
@@ -52,11 +56,15 @@ authController.loginWithFacebookOrGoogle = catchAsync(
         email: profile.email,
         password: newPassword,
         avatarUrl: profile.avatarUrl,
+        cart: [],
       });
       user = await newUser.save();
     }
 
     const accessToken = await user.generateToken();
+    if (user.cart && user.cart.length > 0) {
+      User.populate(user, { path: "cart.item" });
+    }
     return sendResponse(
       res,
       200,

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// // const passport = require("passport");
+const passport = require("passport");
 const validators = require("../middlewares/validators");
 const { body } = require("express-validator");
 const authController = require("../controllers/auth.controller");
@@ -26,7 +26,7 @@ router.post(
  */
 router.post(
   "/login/facebook",
-  //   passport.authenticate("facebook-token"),
+  passport.authenticate("facebook-token"),
   authController.loginWithFacebookOrGoogle
 );
 
@@ -37,7 +37,7 @@ router.post(
  */
 router.post(
   "/login/google",
-  //   passport.authenticate("google-token"),
+  passport.authenticate("google-token"),
   authController.loginWithFacebookOrGoogle
 );
 

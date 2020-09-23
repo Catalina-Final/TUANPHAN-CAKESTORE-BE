@@ -45,7 +45,7 @@ router.put("/", authMiddleware.loginRequired, userController.updateProfile);
  * @description Get current user info
  * @access Login required
  */
-// router.get("/me", authMiddleware.loginRequired, userController.getCurrentUser);
+router.get("/me", authMiddleware.loginRequired, userController.getCurrentUser);
 
 /**
  * @route GET api/users?page=1&limit=10
@@ -53,5 +53,39 @@ router.put("/", authMiddleware.loginRequired, userController.updateProfile);
  * @access Login required
  */
 // router.get("/", authMiddleware.loginRequired, userController.getUsers);
+
+/**
+ * @route post api/users/cart
+ * @description Add to cart
+ * @access Login required
+ */
+router.post("/cart", authMiddleware.loginRequired, userController.addToCart);
+
+/**
+ * @route delete api/users/cart/:id
+ * @description Add to cart
+ * @access Login required
+ */
+router.delete(
+  "/cart/:id",
+  authMiddleware.loginRequired,
+  // validators.validate([
+  //   param("id").exists().isString().custom(validators.checkObjectId),
+  // ]),
+  userController.deleteItem
+);
+
+/**
+ * @route post api/users/cart
+ * @description Add to cart
+ * @access Login required
+ */
+router.post(
+  "/update-quantity",
+  authMiddleware.loginRequired,
+  userController.updateQuantity
+);
+
+router.post("/checkout", authMiddleware.loginRequired, userController.checkout);
 
 module.exports = router;
