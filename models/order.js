@@ -19,20 +19,7 @@ const orderSchema = Schema(
       }),
     ],
     totalPrice: { type: Number },
-    // shipping: {
-    //   fullName: {
-    //     type: String,
-    //     required: [true, "Shipping need a fullname for the bill"],
-    //   },
-    //   address: {
-    //     type: String,
-    //     required: [true, "Need address for the bill"],
-    //   },
-    // },
-    // paid: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    
   },
   { timestamps: true }
 );

@@ -46,8 +46,8 @@ router.post(
  */
 router.put(
   "/:id",
-//   authMiddleware.loginRequired,
-  
+  //   authMiddleware.loginRequired,
+
   itemController.updateSingleItem
 );
 
@@ -57,12 +57,19 @@ router.put(
  * @access Login required
  */
 router.delete(
-    "/:id",
-    // authMiddleware.loginRequired,
-    // validators.validate([
-    //   param("id").exists().isString().custom(validators.checkObjectId),
-    // ]),
-    itemController.deleteSingleItem
-  );
-  
+  "/:id",
+  // authMiddleware.loginRequired,
+  // validators.validate([
+  //   param("id").exists().isString().custom(validators.checkObjectId),
+  // ]),
+  itemController.deleteSingleItem
+);
+
+/**
+ * @route DELETE api/items/:id
+ * @description Delete a item
+ * @access Login required
+ */
+
+
 module.exports = router;

@@ -214,4 +214,13 @@ userController.getCurrentUser = catchAsync(async (req, res, next) => {
   );
 });
 
+userController.deleteCart = catchAsync(async (req, res, next) => {
+  const userId = req.userId;
+  const user = await User.findByIdAndUpdate(userId, {
+    cart: [],
+  });
+  return sendResponse(res, 200, true, null, null, "Delete Cart successful");
+  
+});
+
 module.exports = userController;

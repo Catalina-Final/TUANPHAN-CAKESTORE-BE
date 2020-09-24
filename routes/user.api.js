@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/user.controller");
+const orderController = require("../controllers/order.controller");
+
 const validators = require("../middlewares/validators");
 const { body } = require("express-validator");
 const authMiddleware = require("../middlewares/authentication");
@@ -87,5 +89,17 @@ router.post(
 );
 
 router.post("/checkout", authMiddleware.loginRequired, userController.checkout);
+
+router.post(
+  "/deleteCart",
+  authMiddleware.loginRequired,
+  userController.deleteCart
+);
+
+router.get(
+  "/dashboard",
+  authMiddleware.loginRequired,
+  orderController.getOrders
+);
 
 module.exports = router;
