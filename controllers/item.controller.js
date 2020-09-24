@@ -3,7 +3,7 @@ const {
   catchAsync,
   sendResponse,
 } = require("../helpers/utils.helper");
-const Item = require("../models/Item");
+const Item = require("../models/item");
 // const Review = require("../models/Review");
 const itemController = {};
 
@@ -96,7 +96,5 @@ itemController.deleteSingleItem = catchAsync(async (req, res, next) => {
     );
   return sendResponse(res, 200, true, null, null, "Delete Item successful");
 });
-
-
 
 module.exports = itemController;

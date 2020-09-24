@@ -3,8 +3,8 @@ const {
   catchAsync,
   sendResponse,
 } = require("../helpers/utils.helper");
-const User = require("../models/User");
-const Order = require("../models/Order");
+const User = require("../models/user");
+const Order = require("../models/order");
 const bcrypt = require("bcryptjs");
 // const { emailHelper } = require("../helpers/email.helper");
 const utilsHelper = require("../helpers/utils.helper");
@@ -220,7 +220,6 @@ userController.deleteCart = catchAsync(async (req, res, next) => {
     cart: [],
   });
   return sendResponse(res, 200, true, null, null, "Delete Cart successful");
-  
 });
 
 module.exports = userController;

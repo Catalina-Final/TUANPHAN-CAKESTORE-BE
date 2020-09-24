@@ -4,7 +4,7 @@ const {
   sendResponse,
 } = require("../helpers/utils.helper");
 
-const Order = require("../models/Order");
+const Order = require("../models/order");
 
 const orderController = {};
 
